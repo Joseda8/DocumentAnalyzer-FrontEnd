@@ -1,0 +1,11 @@
+db.documents.insert({
+  title: "",
+  url: "",
+  references: [
+    { 
+      name: "",
+      qty: 0
+    }, {}, {}
+  ],
+  owner: ""
+})
