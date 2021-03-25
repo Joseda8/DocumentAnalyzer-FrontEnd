@@ -9,6 +9,7 @@
   ],
   "main": "src/index.js",
   "dependencies": {
+    "@azure/storage-blob": "^12.5.0",
     "bootstrap": "^4.6.0",
     "history": "4.10.1",
     "prop-types": "15.7.2",
