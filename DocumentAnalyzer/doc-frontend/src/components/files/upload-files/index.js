@@ -21,8 +21,13 @@ class UploadFiles extends Component {
   
     uploadFiles(e){
         const files = e.target.files;
-        console.log(this.objectStorage.uploadFiles(files)); //Esperar respuesta y hacer algo mientras tanto
-    }
+
+        document.getElementById("test").innerHTML =  "Loading";
+        this.objectStorage.uploadFiles(files, (response) => {
+            console.log(response[0]);
+            document.getElementById("test").innerHTML =  "";
+        });
+    }    
 
 
   render() {
@@ -35,6 +40,8 @@ class UploadFiles extends Component {
             <button onClick={this.onSubmit}>TEST</button>
             <br></br>
             <input type="file" multiple onChange={this.uploadFiles}/>
+
+            <h4 id="test"></h4>
 
         </div>
       );

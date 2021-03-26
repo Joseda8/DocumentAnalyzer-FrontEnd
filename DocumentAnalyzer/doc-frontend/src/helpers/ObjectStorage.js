@@ -9,7 +9,7 @@ export default class BlobStorage {
         this.containerClient = blobServiceClient.getContainerClient(containerName);
     }
 
-    uploadFiles = async (files) => {
+    uploadFiles = async (files, response) => {
 
         try {
             const promises = [];
@@ -17,11 +17,10 @@ export default class BlobStorage {
                 const blockBlobClient = this.containerClient.getBlockBlobClient(file.name);
                 promises.push(blockBlobClient.uploadBrowserData(file));
             }
-            let answer = await Promise.all(promises);
-            return answer;
+            response(await Promise.all(promises));
         }
         catch (error) {
-            return error.message;
+            response(error.message);
         }
     }
 
