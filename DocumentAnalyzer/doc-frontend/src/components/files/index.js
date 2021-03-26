@@ -1,7 +1,8 @@
-import React from 'react';
-import { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import UploadFiles from "./upload-files/index";
+import CenteredContent from "../auth/auth-background/CenteredContent";
+import FilesList from "./results-files/index";
 
 const FilesView = props => {
 
@@ -17,11 +18,15 @@ const FilesView = props => {
      }, [location]);
 
     return (
-
-        <div>
-            <h1>Hello Files!</h1>
-            <UploadFiles props={location.state.detail}/>
-        </div>
+        <>
+            <CenteredContent numCol="4" numRow="justify-content-center align-items-center h-50">
+                <UploadFiles props={location.state.detail}/>
+            </CenteredContent>
+            <CenteredContent numCol="8" numRow="justify-content-center align-items-center h-50">
+                <FilesList />
+            </CenteredContent>
+            <hr></hr>
+        </>
 
     );
 }

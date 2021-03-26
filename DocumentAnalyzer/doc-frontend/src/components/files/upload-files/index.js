@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ObjectStorage from "../../../helpers/ObjectStorage";
+import "../../../styles.css";
 
 class UploadFiles extends Component {
 
@@ -17,32 +18,34 @@ class UploadFiles extends Component {
 
     onSubmit() {
         console.log(this.props);
+        document.getElementById("message_to_user").innerHTML =  "Loading";
     }
   
     uploadFiles(e){
         const files = e.target.files;
 
-        document.getElementById("test").innerHTML =  "Loading";
+        document.getElementById("message_to_user").innerHTML =  "Loading...";
         this.objectStorage.uploadFiles(files, (response) => {
             console.log(response[0]);
-            document.getElementById("test").innerHTML =  "";
+            document.getElementById("message_to_user").innerHTML =  "Files uploaded";
         });
     }    
 
 
   render() {
     return (
-        <div>
+        <div className="center">
             <header>
-                <h1>UPLOAD FILES!</h1>
+                <h1>Upload files</h1>
+                <span>This action will start the analysis</span>
             </header>
-
-            <button onClick={this.onSubmit}>TEST</button>
             <br></br>
+            
             <input type="file" multiple onChange={this.uploadFiles}/>
+            <br></br>
+            <br></br>
 
-            <h4 id="test"></h4>
-
+            <h4 id="message_to_user"> </h4>
         </div>
       );
   }
