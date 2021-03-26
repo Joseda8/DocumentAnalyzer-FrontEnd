@@ -11,7 +11,6 @@ const ModalEmployeeReferences = (props) => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
-  console.log(references);
   const items = []
 
   for(const employee of references){
