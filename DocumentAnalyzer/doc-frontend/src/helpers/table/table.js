@@ -3,7 +3,7 @@ import { useTable, useFilters, useSortBy, usePagination } from "react-table";
 import DatatablePagination from './DatablePagination';
 import "./table.css";
 
-export default function Table({ columns, data }) {
+export default function Table({ columns, data, filterBy }) {
   const [filterInput, setFilterInput] = useState("");
   const {
     getTableProps,
@@ -31,8 +31,7 @@ export default function Table({ columns, data }) {
 
   const handleFilterChange = e => {
     const value = e.target.value || undefined;
-    console.log(value);
-    setFilter("title", value);
+    setFilter(filterBy, value);
     setFilterInput(value);
 
   };

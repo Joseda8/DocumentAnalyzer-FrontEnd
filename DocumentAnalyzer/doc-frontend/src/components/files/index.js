@@ -3,6 +3,7 @@ import { useLocation, Link } from "react-router-dom";
 import UploadFiles from "./upload-files/index";
 import CenteredContent from "../auth/auth-background/CenteredContent";
 import FilesList from "./results-files/index";
+import EmployeeList from "./results-references/index";
 
 const FilesView = props => {
 
@@ -26,9 +27,9 @@ const FilesView = props => {
             <CenteredContent numCol="8" numRow="justify-content-center align-items-center h-50">
                 <FilesList />
             </CenteredContent>
-            {/* <CenteredContent numCol="8" numRow="justify-content-center align-items-center h-50">
-                <FilesList />
-            </CenteredContent> */}
+            <CenteredContent numCol="8" numRow="justify-content-center align-items-center h-50">
+                <EmployeeList />
+            </CenteredContent>
             <hr></hr>
         </>
 
@@ -36,11 +37,3 @@ const FilesView = props => {
 }
 
 export default FilesView;
-
-/*
-<Link to={{
-    pathname: '/template',
-    search: '?query=abc',
-    state: { detail: response.data }
-}}> My Link </Link>
-*/ 

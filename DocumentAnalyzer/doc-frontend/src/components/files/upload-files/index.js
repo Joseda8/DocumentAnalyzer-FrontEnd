@@ -9,11 +9,13 @@ class UploadFiles extends Component {
         this.state = {
             email: "",
             password: "",
+            files: null,
         }
 
         this.objectStorage = new ObjectStorage();
         this.onSubmit = this.onSubmit.bind(this);
         this.uploadFiles = this.uploadFiles.bind(this);
+        this.uploadFilesBlob = this.uploadFilesBlob.bind(this);
     }
 
     onSubmit() {
@@ -22,7 +24,17 @@ class UploadFiles extends Component {
     }
   
     uploadFiles(e){
-        const files = e.target.files;
+        const new_files = e.target.files;
+
+        this.setState({
+            files: new_files
+        });
+    }    
+
+    uploadFilesBlob(){
+        const files = this.state.files;
+
+        console.log(files);
 
         document.getElementById("message_to_user").innerHTML =  "Loading...";
         this.objectStorage.uploadFiles(files, (response) => {
@@ -30,7 +42,6 @@ class UploadFiles extends Component {
             document.getElementById("message_to_user").innerHTML =  "Files uploaded";
         });
     }    
-
 
   render() {
     return (
@@ -44,7 +55,9 @@ class UploadFiles extends Component {
             <input type="file" multiple onChange={this.uploadFiles}/>
             <br></br>
             <br></br>
-
+            <button onClick={this.uploadFilesBlob}>Upload files</button>
+            <br></br>
+            <br></br>
             <h4 id="message_to_user"> </h4>
         </div>
       );

@@ -45,7 +45,7 @@ const FilesList = () => {
         <div>
             <h2>Files</h2>
             <div className="filesTable">
-                <Table columns={columns} data={files} />
+                <Table columns={columns} data={files} filterBy="title"/>
             </div>
         </div>
     );
