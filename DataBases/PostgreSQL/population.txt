@@ -7,5 +7,11 @@ INSERT INTO EMPLOYEE (full_name) VALUES ('Isaac Ramirez');
 INSERT INTO USER_CREDENTIAL (full_name, email, user_password) VALUES ('John Doe', 'johnDoe@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
 INSERT INTO USER_CREDENTIAL (full_name, email, user_password) VALUES ('Jane Doe', 'janeDoe@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
 
-INSERT INTO EMPLOYEE_REFERENCE(employee_id) VALUES (1);
-INSERT INTO EMPLOYEE_REFERENCE(employee_id) VALUES (2);
+INSERT INTO EMPLOYEE_REFERENCE_BY_DOCUMENT(employee_id, document_id) VALUES (1, 'agdgfadsas');
+INSERT INTO EMPLOYEE_REFERENCE_BY_DOCUMENT(employee_id, document_id) VALUES (1, 'nmfiujbujd');
+INSERT INTO EMPLOYEE_REFERENCE_BY_DOCUMENT(employee_id, document_id) VALUES (2, 'nmfiujbujd');
+
+/* SELECT * FROM EMPLOYEE */
+/* SELECT * FROM EMPLOYEE_REFERENCE_BY_DOCUMENT */
+/* SELECT * FROM USER_CREDENTIAL */
+
