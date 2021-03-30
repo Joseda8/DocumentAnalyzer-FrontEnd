@@ -1,9 +1,11 @@
-INSERT INTO employee (full_name) VALUES ('Jose Montoya');
-INSERT INTO employee (full_name) VALUES ('Fabian Gonzales');
-INSERT INTO employee (full_name) VALUES ('Marcelo Sanchez');
-INSERT INTO employee (full_name) VALUES ('Arturo Cordoba');
-INSERT INTO employee (full_name) VALUES ('Isaac Ramirez');
+INSERT INTO EMPLOYEE (full_name) VALUES ('Jose Montoya');
+INSERT INTO EMPLOYEE (full_name) VALUES ('Fabian Gonzales');
+INSERT INTO EMPLOYEE (full_name) VALUES ('Marcelo Sanchez');
+INSERT INTO EMPLOYEE (full_name) VALUES ('Arturo Cordoba');
+INSERT INTO EMPLOYEE (full_name) VALUES ('Isaac Ramirez');
 
-INSERT INTO usercredential (full_name, email, user_password) VALUES ('John Doe', 'johnDoe@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
-INSERT INTO usercredential (full_name, email, user_password) VALUES ('Jane Doe', 'janeDoe@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
+INSERT INTO USER_CREDENTIAL (full_name, email, user_password) VALUES ('John Doe', 'johnDoe@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
+INSERT INTO USER_CREDENTIAL (full_name, email, user_password) VALUES ('Jane Doe', 'janeDoe@gmail.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
 
+INSERT INTO EMPLOYEE_REFERENCE(employee_id) VALUES (1);
+INSERT INTO EMPLOYEE_REFERENCE(employee_id) VALUES (2);
