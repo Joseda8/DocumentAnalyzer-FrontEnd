@@ -1,6 +1,7 @@
 db.documents.insert({
   title: "",
   url: "",
+  status: true,
   references: [
     { 
       name: "",
