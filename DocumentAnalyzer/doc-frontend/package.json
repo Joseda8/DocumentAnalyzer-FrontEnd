@@ -1,5 +1,6 @@
 {
   "name": "react-basic-navigation",
+  "homepage": "http://localhost:3000",
   "version": "1.0.0",
   "description": "Example of a basic navigation using react-router-dom for react applications!",
   "keywords": [

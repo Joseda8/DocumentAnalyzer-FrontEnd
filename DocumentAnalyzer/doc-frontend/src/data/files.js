@@ -59,7 +59,7 @@ const files = [
 },
 {
     id: 6,
-    title: 'LoveLetter.txt',
+    title: 'El quijote.txt',
     status: false,
     url: 'https://soafiles.blob.core.windows.net/files/WeeklyActivity4 - Inglés especializado.pdf',
     references: [
@@ -67,7 +67,7 @@ const files = [
         {name: "Billie Joe Armstrong", qty: 15},
         {name: "Ash Ketchum", qty: 200},
     ],
-    owner: "Jane Doe"
+    owner: "John Doe"
 },
 {
     id: 7,
