@@ -37,10 +37,28 @@ class SignUp extends Component {
     SignupService.signupRequest(name, email, password1).then(
       () => {
         this.props.history.push("/login");
-      },
-      () => {
+      }
+    ).catch(
+      (error) => {
+        let errorInfo = "Error desconocido.";
+        
+        try {
+          if(!!error.response) {
+            const errorData = error.response.data;
+            switch (errorData) {
+              case "EMAILS_EXISTS":
+                errorInfo = "Correo ya está registrado."
+                break;
+            
+              default:
+                break;
+            }
+          }
+        }
+        catch {}
+
         this.setState({
-          errorMessage: "Error desconocido.",
+          errorMessage: errorInfo,
         });
       }
     );

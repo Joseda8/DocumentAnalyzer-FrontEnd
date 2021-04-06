@@ -18,6 +18,10 @@ export class AuthService {
     // The token is stored
     this.token = atob(storedToken);
     
+    // Checks if the user is on the login page or in the default page
+    const currentPath = history.location.pathname;
+    if(!(currentPath === '/login' || currentPath === '/')) return; 
+    
     // Redirection to the files page
     history.push({
       pathname: '/files',
