@@ -50,13 +50,13 @@ const FilesList = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setNewData();
+            console.log("HERE");
         }, 1000);
         return () => clearInterval(interval);
       }, []);
     
     return (
         <div>
-            <button onClick={setNewData}> Click me </button>
             <h2>Files</h2>
             <div className="filesTable">
                 <Table columns={columns} data={data_files} filterBy="title"/>
