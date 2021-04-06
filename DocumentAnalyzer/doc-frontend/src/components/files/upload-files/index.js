@@ -1,58 +1,67 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Alert } from "react-bootstrap";
+import ObjectStorage from "../../../helpers/ObjectStorage";
+import "../../../styles.css";
 
 class UploadFiles extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-        email: "",
-        password: "",
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            password: "",
+            files: null,
+        }
+
+        this.objectStorage = new ObjectStorage();
+        this.onSubmit = this.onSubmit.bind(this);
+        this.uploadFiles = this.uploadFiles.bind(this);
+        this.uploadFilesBlob = this.uploadFilesBlob.bind(this);
     }
 
-    this.onSubmit = this.onSubmit.bind(this);
-}
+    onSubmit() {
+        console.log(this.props);
+        document.getElementById("message_to_user").innerHTML =  "Loading";
+    }
+  
+    uploadFiles(e){
+        const new_files = e.target.files;
 
-  onSubmit(e) {
-    e.preventDefault();
-    const test = this.props.location.state.detail;
-    console.log(test);
-  }
+        this.setState({
+            files: new_files
+        });
+    }    
+
+    uploadFilesBlob(){
+        const files = this.state.files;
+
+        console.log(files);
+
+        document.getElementById("message_to_user").innerHTML =  "Loading...";
+        this.objectStorage.uploadFiles(files, (response) => {
+            console.log(response[0]);
+            document.getElementById("message_to_user").innerHTML =  "Files uploaded";
+        });
+    }    
 
   render() {
     return (
-      <>
-        <AuthBackground>
-          <h2 className="h4">Iniciar sesión</h2>
-          <Form onSubmit={this.onSubmit}>
-            <Form.Group>
-              <Form.Label>Correo electrónico</Form.Label>
-              <Form.Control type="email" placeholder="Correo electrónico" />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control type="password" placeholder="Contraseña" />
-            </Form.Group>
-            <Button variant="primary" type="submit" block>
-              Ingresar
-            </Button>
-          </Form>
-          <Alert variant="info" className="mt-3">
-            ¿Nuevo usuario? <Link to="/signup" className="alert-link">Regístrese aquí</Link>
-          </Alert>
-        </AuthBackground>
-      </>
-    );
+        <div className="center">
+            <header>
+                <h1>Upload files</h1>
+                <span>This action will start the analysis</span>
+            </header>
+            <br></br>
+            
+            <input type="file" multiple onChange={this.uploadFiles}/>
+            <br></br>
+            <br></br>
+            <button onClick={this.uploadFilesBlob}>Upload files</button>
+            <br></br>
+            <br></br>
+            <h4 id="message_to_user"> </h4>
+        </div>
+      );
   }
 }
 
 export default UploadFiles;
-
-/*
-<Link to={{
-      pathname: '/template',
-      search: '?query=abc',
-      state: { detail: response.data }
-    }}> My Link </Link>
-*/

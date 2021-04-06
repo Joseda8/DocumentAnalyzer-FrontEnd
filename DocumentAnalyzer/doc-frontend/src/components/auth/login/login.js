@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { Form, Button, Alert } from "react-bootstrap";
-import AuthBackground from "../auth-background/auth-background";
+import CenteredContent from "../auth-background/CenteredContent";
 
 class LogIn extends Component {
 
@@ -38,7 +38,7 @@ class LogIn extends Component {
   render() {
     return (
       <>
-        <AuthBackground>
+          <CenteredContent numCol="4" numRow="justify-content-center align-items-center h-100">
           <h2 className="h4">Iniciar sesión</h2>
           <Form onSubmit= {this.onSubmit}>
             <Form.Group>
@@ -56,7 +56,7 @@ class LogIn extends Component {
           <Alert variant="info" className="mt-3">
             ¿Nuevo usuario? <Link to="/signup" className="alert-link">Regístrese aquí</Link>
           </Alert>
-        </AuthBackground>
+          </CenteredContent>
       </>
     );
   }
