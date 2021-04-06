@@ -3,6 +3,9 @@ import { Link, withRouter } from "react-router-dom";
 
 import { Form, Button, Row, Col, Alert } from "react-bootstrap";
 import AuthBackground from "../auth-background/auth-background";
+import CenteredContent from "../auth-background/CenteredContent";
+
+import SignupService from "./signup-service";
 
 class SignUp extends Component {
   constructor(props) {
@@ -26,10 +29,21 @@ class SignUp extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    if (this.validateInputs()) {
-      /** Solicitud HTTP */
-    }
-    this.props.history.push('/login');
+    if (!this.validateInputs()) return;
+
+    const name = this.state.name;
+    const email = this.state.email;
+    const password1 = this.state.password1;
+    SignupService.signupRequest(name, email, password1).then(
+      () => {
+        this.props.history.push("/login");
+      },
+      () => {
+        this.setState({
+          errorMessage: "Error desconocido.",
+        });
+      }
+    );
   }
 
   /**
@@ -58,6 +72,14 @@ class SignUp extends Component {
       return false;
     }
 
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(email)) {
+      this.setState({
+        errorMessage: "El formato del email es inválido.",
+      });
+      return false;
+    }
+
     return true;
   }
 
@@ -65,56 +87,61 @@ class SignUp extends Component {
     return (
       <>
         <AuthBackground>
-          <h2 className="h4">Registro</h2>
-          {this.state.errorMessage && (
-            <Alert variant="danger">{this.state.errorMessage}</Alert>
-          )}
-          <Form onSubmit={this.onSubmit}>
-            <Form.Group>
-              <Form.Label>Nombre completo</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Nombre completo"
-                onChange={this.handleNameChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Correo electrónico</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Correo electrónico"
-                onChange={this.handleEmailChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Contraseña"
-                onChange={this.handlePassword1Change}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label>Repetir Contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Contraseña"
-                onChange={this.handlePassword2Change}
-              />
-            </Form.Group>
-            <Row>
-              <Col>
-                <Link to="/" className="btn btn-secondary btn-block">
-                  Cancelar
-                </Link>
-              </Col>
-              <Col>
-                <Button variant="primary" type="submit" block>
-                  Crear usuario
-                </Button>
-              </Col>
-            </Row>
-          </Form>
+          <CenteredContent
+            numCol="4"
+            numRow="justify-content-center align-items-center h-100"
+          >
+            <h2 className="h4">Registro</h2>
+            {this.state.errorMessage && (
+              <Alert variant="danger">{this.state.errorMessage}</Alert>
+            )}
+            <Form onSubmit={this.onSubmit}>
+              <Form.Group>
+                <Form.Label>Nombre completo</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Nombre completo"
+                  onChange={this.handleNameChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Correo electrónico</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Correo electrónico"
+                  onChange={this.handleEmailChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Contraseña"
+                  onChange={this.handlePassword1Change}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Repetir Contraseña</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Contraseña"
+                  onChange={this.handlePassword2Change}
+                />
+              </Form.Group>
+              <Row>
+                <Col>
+                  <Link to="/" className="btn btn-secondary btn-block">
+                    Cancelar
+                  </Link>
+                </Col>
+                <Col>
+                  <Button variant="primary" type="submit" block>
+                    Crear usuario
+                  </Button>
+                </Col>
+              </Row>
+            </Form>
+          </CenteredContent>
         </AuthBackground>
       </>
     );

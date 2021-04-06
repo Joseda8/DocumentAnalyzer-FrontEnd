@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Form, Button, Alert } from "react-bootstrap";
 import CenteredContent from "../auth-background/CenteredContent";
 
-import { AuthService } from "../authservice";
+import { AuthService } from "../auth-service";
 
 class LogIn extends Component {
   constructor(props) {
