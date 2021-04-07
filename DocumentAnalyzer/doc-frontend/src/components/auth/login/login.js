@@ -44,6 +44,15 @@ class LogIn extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    // Redirection to the files page
+    /*
+    this.props.history.push({
+      pathname: '/files',
+      state: { detail: this.state }
+    })
+    return; 
+    */
+    
     const form = e.target.elements;
     const email = form.email.value;
     const password = form.password.value;
