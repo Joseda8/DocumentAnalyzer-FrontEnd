@@ -1,0 +1,30 @@
+Instalar y reiniciar computadora
+https://aka.ms/vs/16/release/VC_redist.x86.exe
+
+Descargar 
+https://www.apachelounge.com/download/VS16/binaries/httpd-2.4.46-win64-VS16.zip
+
+Copiar carpeta Apache24 a Equipo
+
+Modificar línea 60 de C:\Apache24\conf\httpd.conf y cambiar Listen 80 a Listen 3000
+Abrir terminal con permisos de adminsitrador en Apache24/bin
+
+Ejecutar e ignorar mensajes
+httpd.exe -k install
+httpd.exe -k start
+
+Copiar todos los archivos dentro de build en React y pegarlos en Apache24/htdocs. Eliminar index.html previo
+a la copia
+
+Ejecutar ApacheMonitor.exe dentro de Apache24/bin y usar las opciones de Start, Stop, etc
+
+
+Compilar build React
+
+En package.json pegar debajo de "name" y encima de "version": "homepage": "http://localhost:3000",
+
+Dentro de la carpeta public crear un archivo llamado .htaccess y pegar dentro de él: FallbackResource ./index.html
+
+Ejecutar npm run build
+
+Pasar todo lo que haya dentro de build a la carpeta htdocs en Apache24
