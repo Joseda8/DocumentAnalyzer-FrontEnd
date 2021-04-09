@@ -50,7 +50,6 @@ const FilesList = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setNewData();
-            console.log("HERE");
         }, 1000);
         return () => clearInterval(interval);
       }, []);
