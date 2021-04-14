@@ -16,8 +16,9 @@ class FilesList extends Component {
       data_files: [
         {
           url: "#",
-          Title: "There are not results",
-          Status: false,
+          title: "There are not results",
+          status: false,
+          userDocumentReferences: [],
         },
       ],
     };
@@ -33,6 +34,10 @@ class FilesList extends Component {
 
   button_type(status, references) {
     if (status) {
+      if (references.length === 0) {
+        return <button className="mb-2 btn btn-info" >No matches</button>;
+      }  
+      
       return (
         <ModalEmployeeReferences
           buttonLabel={"See results"}
@@ -45,10 +50,11 @@ class FilesList extends Component {
   }
 
   setNewData() {
-    axios.get(urlAPI + "documents/user=1").then((response) => {
+    axios.get(urlAPI + "documents").then((response) => {
       if (
-        JSON.stringify(this.state.data_files) !== JSON.stringify(response.data)
-      ) {
+        JSON.stringify(this.state.data_files) !== JSON.stringify(response.data) && response.data.length > 0
+        ) {
+        console.log(response)
         this.setState({
           data_files: response.data,
         });
@@ -60,11 +66,11 @@ class FilesList extends Component {
     const columns = [
       {
         Header: "Filename",
-        accessor: "Title",
+        accessor: "title",
         cellClass: "text-muted w-10",
         Cell: (info) => (
-          <a href={"https://soafiles.blob.core.windows.net/files/prueba.pdf"}>
-            {info.row.original.Title}
+          <a href={info.row.original.url}>
+            {info.row.original.title}
           </a>
         ),
         sortType: "basic",
@@ -82,8 +88,8 @@ class FilesList extends Component {
         cellClass: "text-muted w-10",
         Cell: (info) =>
           this.button_type(
-            info.row.original.Status,
-            info.row.original.UserDocumentReferences
+            info.row.original.status,
+            info.row.original.userDocumentReferences
           ),
       },
     ];
@@ -95,7 +101,7 @@ class FilesList extends Component {
           <Table
             columns={columns}
             data={this.state.data_files}
-            filterBy="Title"
+            filterBy="title"
           />
         </div>
       </div>

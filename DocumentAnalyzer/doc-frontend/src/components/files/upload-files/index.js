@@ -42,16 +42,14 @@ class UploadFiles extends Component {
       let url = response[0]._response.request.url;
       url = url.slice(0, url.indexOf("?"));
       let title = files[0].name;
-      let owner = 1;
       const body = {
         url: url,
         title: title,
-        owner: owner,
       };
       document.getElementById("message_to_user").innerHTML = "Files uploaded";
     const urlAPI = "http://localhost:39748/documents/notify";
     axios.post(urlAPI, body).then((response) => {
-        document.getElementById("message_to_user").innerHTML = "Server received the file successfully";
+        //document.getElementById("message_to_user").innerHTML = "Server received the file successfully";
         //console.log(response);
     });
 

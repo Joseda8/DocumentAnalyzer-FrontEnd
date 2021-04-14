@@ -22,24 +22,23 @@ const EmployeeList = () => {
         () => [
             {
                 Header: 'Name',
-                accessor: 'EmployeeName',
+                accessor: 'employeeName',
                 cellClass: 'text-muted w-10',
-                Cell: (info) => <p>{info.row.original.EmployeeName}</p>,
+                Cell: (info) => <p>{info.row.original.employeeName}</p>,
                 sortType: 'basic',
             },
             {
                 Header: 'Total Occurrences',
-                accessor: 'Count',
+                accessor: 'count',
                 cellClass: 'text-muted w-10',
-                Cell: (info) => <p>{info.row.original.Count}</p>,
+                Cell: (info) => <p>{info.row.original.count}</p>,
                 sortType: 'basic',
             },
             {
                 Header: 'Ocurrences on document',
                 accessor: 'documents',
                 cellClass: 'text-muted w-10',
-                //Cell: (info) => button_type(info.row.original.UserDocumentReferences),
-                Cell: (info) => button_type([]),
+                Cell: (info) => button_type(info.row.original.documents),
             },
         ],
         []
@@ -70,7 +69,7 @@ const EmployeeList = () => {
         <div>
             <h2>Employee References</h2>
             <div className="filesTable">
-                <Table columns={columns} data={employees} filterBy="EmployeeName"/>
+                <Table columns={columns} data={employees} filterBy="employeeName"/>
             </div>
         </div>
     );

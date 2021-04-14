@@ -14,7 +14,7 @@ const ModalEmployeeReferences = (props) => {
   const items = []
 
   for(const employee of references){
-    items.push(<div key={employee.Name}><Label>{employee.Name}: {employee.Qty}</Label></div>);
+    items.push(<div key={employee.name}><Label>{employee.name}: {employee.qty}</Label></div>);
   }
 
   return (

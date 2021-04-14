@@ -1,14 +1,17 @@
 import axios from 'axios';
-import history from '../../services/history'
+import history from '../../services/history';
+import { AUTHAPI_URL } from '../../helpers/constants';
 
 export class AuthService {
   static token;
   
-  static AUTHAPI_URL = 'http://localhost:16293/';
+  static AUTHAPI_URL;
 
   static storeToken(token) {
     this.token = token;
     sessionStorage.setItem(btoa('token'), btoa(token));
+
+    this.AUTHAPI_URL = AUTHAPI_URL;
   }
 
   static autoLogin() {
@@ -30,7 +33,7 @@ export class AuthService {
   }
 
   static loginRequest(email, password) {
-    return axios.post(this.AUTHAPI_URL + 'Login', {
+    return axios.post(AUTHAPI_URL + 'Login', {
       email: email,
       password: btoa(password), // The password is encrypted in base 64
     });
