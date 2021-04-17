@@ -73,7 +73,7 @@ const EmployeeList = () => {
                 <Col xs="2" onClick={setNewData}><button className="mb-2 btn btn-primary" style={{float: "right"}}>Refresh</button></Col>
             </Row>
             <div className="filesTable">
-                <Table columns={columns} data={employees} filterBy="name"/>
+                <Table columns={columns} data={employees} filterBy="employeeName"/>
             </div>
         </Container>
     );
