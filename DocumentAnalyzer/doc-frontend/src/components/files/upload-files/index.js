@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ObjectStorage from "../../../helpers/ObjectStorage";
 import "../../../styles.css";
+import { urlAPI } from "../../../helpers/constants";
 
 import axios from "axios";
 
@@ -47,8 +48,7 @@ class UploadFiles extends Component {
         title: title,
       };
       document.getElementById("message_to_user").innerHTML = "Files uploaded";
-    const urlAPI = "http://localhost:39748/documents/notify";
-    axios.post(urlAPI, body).then((response) => {
+    axios.post(urlAPI + 'documents/notify', body).then((response) => {
         //document.getElementById("message_to_user").innerHTML = "Server received the file successfully";
         //console.log(response);
     });

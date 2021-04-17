@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from "../../../helpers/table/table";
 import "../../../helpers/table/table.css";
 import ModalDocumentReferences from "./references-by-document";
+import { Container, Row, Col } from 'reactstrap';
 
 import axios from 'axios';
 import { urlAPI } from "../../../helpers/constants";
@@ -66,12 +67,15 @@ const EmployeeList = () => {
 
     
     return (
-        <div>
-            <h2>Employee References</h2>
+        <Container>
+            <Row>
+                <Col xs="10"><h2>Employee References</h2></Col>
+                <Col xs="2" onClick={setNewData}><button className="mb-2 btn btn-primary" style={{float: "right"}}>Refresh</button></Col>
+            </Row>
             <div className="filesTable">
-                <Table columns={columns} data={employees} filterBy="employeeName"/>
+                <Table columns={columns} data={employees} filterBy="name"/>
             </div>
-        </div>
+        </Container>
     );
 
 }
