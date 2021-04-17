@@ -5,13 +5,9 @@ import { AUTHAPI_URL } from '../../helpers/constants';
 export class AuthService {
   static token;
   
-  static AUTHAPI_URL;
-
   static storeToken(token) {
     this.token = token;
     sessionStorage.setItem(btoa('token'), btoa(token));
-
-    this.AUTHAPI_URL = AUTHAPI_URL;
   }
 
   static autoLogin() {
@@ -30,6 +26,10 @@ export class AuthService {
       pathname: '/files',
       state: { detail: this.state }
     })
+  }
+
+  static logout() {
+    sessionStorage.clear();
   }
 
   static loginRequest(email, password) {
