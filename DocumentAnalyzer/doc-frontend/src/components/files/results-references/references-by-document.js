@@ -14,7 +14,7 @@ const ModalDocumentReferences = (props) => {
   const items = []
 
   for(const document of references){
-    items.push(<div key={document.name}><Label>{document.name}: {document.ocurrences}</Label></div>);
+    items.push(<div key={document.name}><Label>{document.name}: {document.qty}</Label></div>);
   }
 
   return (

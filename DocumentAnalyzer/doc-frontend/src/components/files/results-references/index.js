@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Table from "../../../helpers/table/table";
 import "../../../helpers/table/table.css";
-import employees from "../../../data/employee";
 import ModalDocumentReferences from "./references-by-document";
+import { Container, Row, Col } from 'reactstrap';
 
+import axios from 'axios';
+import { urlAPI } from "../../../helpers/constants";
 
 function button_type(references) {
     if(references.length > 0){
@@ -15,21 +17,22 @@ function button_type(references) {
 
 
 const EmployeeList = () => {
+    const [employees, set_employees] = useState([]);
 
     const columns = React.useMemo(
         () => [
             {
                 Header: 'Name',
-                accessor: 'name',
+                accessor: 'employeeName',
                 cellClass: 'text-muted w-10',
-                Cell: (info) => <p>{info.row.original.name}</p>,
+                Cell: (info) => <p>{info.row.original.employeeName}</p>,
                 sortType: 'basic',
             },
             {
                 Header: 'Total Occurrences',
-                accessor: 'qty',
+                accessor: 'count',
                 cellClass: 'text-muted w-10',
-                Cell: (info) => <p>{info.row.original.qty}</p>,
+                Cell: (info) => <p>{info.row.original.count}</p>,
                 sortType: 'basic',
             },
             {
@@ -42,14 +45,37 @@ const EmployeeList = () => {
         []
     );
 
+    function setNewData(){
+        //set_data_files([ files[Math.floor(Math.random() * 10)] ]);
+
+        axios.get(urlAPI + 'documents/users/count').then(
+            response => {
+                //console.log(response);
+                
+                set_employees(response.data);
+            }
+        );
+    }
+
+    useEffect(() => {
+        setNewData();
+        /*const interval = setInterval(() => {
+            setNewData();
+        }, 1000);
+        return () => clearInterval(interval);*/
+      }, []);
+
     
     return (
-        <div>
-            <h2>Employee References</h2>
+        <Container>
+            <Row>
+                <Col xs="10"><h2>Employee References</h2></Col>
+                <Col xs="2" onClick={setNewData}><button className="mb-2 btn btn-primary" style={{float: "right"}}>Refresh</button></Col>
+            </Row>
             <div className="filesTable">
-                <Table columns={columns} data={employees} filterBy="name"/>
+                <Table columns={columns} data={employees} filterBy="employeeName"/>
             </div>
-        </div>
+        </Container>
     );
 
 }
