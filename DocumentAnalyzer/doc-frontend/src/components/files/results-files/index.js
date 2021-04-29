@@ -94,6 +94,13 @@ class FilesList extends Component {
       },
     ];
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setNewData();
+        }, 1000);
+        return () => clearInterval(interval);
+      }, []);
+    
     return (
       <div>
         <h2>Files</h2>
